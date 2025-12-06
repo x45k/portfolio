@@ -1,11 +1,17 @@
 html, body {
-    color: #ffffff;
     font-family: 'Arial', sans-serif;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
     background: #0a0a0a;
+    color: #ffffff;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.light-mode {
+    background: #f8f9fa;
+    color: #222222;
 }
 
 html {
@@ -23,6 +29,12 @@ header {
     z-index: 100;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.light-mode header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -31,6 +43,11 @@ h1 {
     font-weight: 300;
     letter-spacing: 1px;
     text-align: center;
+    transition: color 0.4s ease;
+}
+
+.light-mode h1 {
+    color: #222222;
 }
 
 nav ul {
@@ -57,29 +74,95 @@ nav a {
     display: inline-block;
 }
 
+.light-mode nav a {
+    color: #444444;
+}
+
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
 
+.light-mode nav a:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.light-mode .theme-toggle {
+    background: rgba(0, 0, 0, 0.08);
+    color: #222222;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(30deg);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.light-mode .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.dark-icon {
+    display: none;
+}
+
+.light-mode .light-icon {
+    display: none;
+}
+
+.light-mode .dark-icon {
+    display: block;
+}
+
 main {
     padding-bottom: 60px;
     padding-top: 20px;
+    transition: background-color 0.4s ease;
 }
 
 #examples, #contact {
     padding: 40px 15px;
     text-align: center;
+    background-color: #121212;
+    transition: background-color 0.4s ease;
+}
+
+.light-mode #examples,
+.light-mode #contact {
     background-color: #ffffff;
 }
 
 #examples h2, #contact h2 {
     margin: 0 0 20px 0;
     font-size: 1.8em;
-    color: #222;
+    color: #ffffff;
     font-weight: 300;
     position: relative;
     display: inline-block;
+    transition: color 0.4s ease;
+}
+
+.light-mode #examples h2,
+.light-mode #contact h2 {
+    color: #222222;
 }
 
 #examples h2::after, #contact h2::after {
@@ -90,7 +173,13 @@ main {
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background: #121212;
+    background: #ffffff;
+    transition: background-color 0.4s ease;
+}
+
+.light-mode #examples h2::after,
+.light-mode #contact h2::after {
+    background: #222222;
 }
 
 .examples-container {
@@ -112,10 +201,23 @@ main {
     width: 100%;
     transition: transform 0.3s ease;
     margin-bottom: 20px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.4s ease;
+}
+
+.light-mode .example-card {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .example-card:hover {
     transform: translateY(-10px);
+}
+
+.light-mode .example-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .example-image {
@@ -133,8 +235,8 @@ main {
 }
 
 .check-button {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #121212;
     border: none;
     padding: 12px 24px;
     border-radius: 25px;
@@ -143,21 +245,35 @@ main {
     width: 100%;
     max-width: 200px;
     transition: all 0.3s ease;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0.5px;
 }
 
+.light-mode .check-button {
+    background-color: #222222;
+    color: #ffffff;
+}
+
 .check-button:hover {
-    background-color: #333;
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.light-mode .check-button:hover {
+    background-color: #444444;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 #contact h4 {
     margin: 15px 0;
     font-size: 1em;
-    color: #555;
+    color: #bbbbbb;
     font-weight: 300;
+    transition: color 0.4s ease;
+}
+
+.light-mode #contact h4 {
+    color: #555555;
 }
 
 @keyframes fadeIn {
@@ -191,6 +307,13 @@ main {
         padding: 8px 16px;
     }
     
+    .theme-toggle {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-left: 20px;
+    }
+    
     #examples, #contact {
         padding: 80px 20px;
     }
@@ -207,6 +330,7 @@ main {
     .example-card {
         max-width: 320px;
         margin-bottom: 0;
+        padding: 20px;
     }
     
     .example-image {
