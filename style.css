@@ -121,14 +121,18 @@ nav a:hover {
 }
 
 .dark-icon {
-    display: none;
+    display: block;
 }
 
-.light-mode .light-icon {
+.light-icon {
     display: none;
 }
 
 .light-mode .dark-icon {
+    display: none;
+}
+
+.light-mode .light-icon {
     display: block;
 }
 
