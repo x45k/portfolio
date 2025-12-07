@@ -10,20 +10,114 @@
 <body>
     <nav class="top-bar">
         <div class="nav-buttons">
-            <button class="nav-btn active">
+            <button class="nav-btn active" data-target="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-target="tours">
                 <i class="fas fa-map-marked-alt"></i>
                 <span>Tours</span>
             </button>
-            <button class="nav-btn">
+            <button class="nav-btn" data-target="about">
                 <i class="fas fa-info-circle"></i>
                 <span>About</span>
             </button>
-            <button class="nav-btn">
+            <button class="nav-btn" data-target="contact">
                 <i class="fas fa-envelope"></i>
                 <span>Contact Us</span>
             </button>
         </div>
     </nav>
+
+    <section id="home" class="section">
+        <div class="content">
+            <h1>Discover Lisbon</h1>
+            <p>Experience the beauty and culture of Portugal's capital</p>
+            <button class="cta-btn">Start Your Journey</button>
+        </div>
+        <div class="scroll-hint">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section id="tours" class="section">
+        <h2>Our Tours</h2>
+        <div class="tours-grid">
+            <div class="tour-card">
+                <i class="fas fa-landmark"></i>
+                <h3>Historic Lisbon</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="tour-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Food Tour</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="tour-card">
+                <i class="fas fa-music"></i>
+                <h3>Fado Night</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <h4>5000+</h4>
+                    <p>Happy Tourists</p>
+                </div>
+                <div class="stat">
+                    <h4>50+</h4>
+                    <p>Tour Options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="contact-overlay"></div>
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Phone</h3>
+                <p>+1 234 567 8901</p>
+                <p>+351 123 456 789</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>example@lisbontours.com</p>
+                <p>example@lisbontours.pt</p>
+            </div>
+            <div class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp</h3>
+                <p>+1 111 111 1111</p>
+                <p>24/7 Support</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>Example Address</p>
+                <p>Lisbon, PT</p>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </section>
 
     <script src="./script.js"></script>
 </body>
