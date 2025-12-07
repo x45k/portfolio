@@ -112,12 +112,12 @@ nav a:hover {
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1) rotate(30deg);
+    transform: scale(1.1) rotate(30deg) !important;
     background: rgba(255, 255, 255, 0.2);
 }
 
 .light-mode .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.15) !important;
 }
 
 .dark-icon {
