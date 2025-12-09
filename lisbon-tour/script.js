@@ -6,7 +6,7 @@ const activeIndicator = document.createElement('div');
 activeIndicator.className = 'active-indicator';
 navButtons.appendChild(activeIndicator);
 
-let lastActiveSection = localStorage.getItem('lastActiveSection') || 'home';
+let lastActiveSection = 'home';
 
 function updateActiveIndicator(activeBtn) {
     const btnRect = activeBtn.getBoundingClientRect();
@@ -26,13 +26,10 @@ function setActiveButton(btn) {
     btn.style.backgroundColor = 'rgba(77, 171, 247, 0.1)';
     
     updateActiveIndicator(btn);
-    
-    localStorage.setItem('lastActiveSection', btn.getAttribute('data-target'));
 }
 
 function initializeActiveButton() {
-    const savedSection = localStorage.getItem('lastActiveSection') || 'home';
-    const targetBtn = document.querySelector(`[data-target="${savedSection}"]`);
+    const targetBtn = document.querySelector(`[data-target="home"]`);
     
     if (targetBtn) {
         setActiveButton(targetBtn);
