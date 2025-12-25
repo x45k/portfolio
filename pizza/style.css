@@ -294,6 +294,7 @@ body {
     margin-bottom: 25px;
     background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     letter-spacing: -1px;
@@ -445,6 +446,7 @@ body {
     font-weight: 800;
     background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
     display: inline-block;
@@ -751,6 +753,7 @@ body {
     font-weight: 800;
     background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -1073,6 +1076,7 @@ footer {
     font-size: 2.5rem;
     background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
     font-weight: 800;
