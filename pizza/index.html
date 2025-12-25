@@ -3,22 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza</title>
+    <title>Pizza Site</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="menu-toggle" id="menuToggle">
-        <div class="hamburger">☰</div>
-        <div class="close">×</div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="close">
+            <span></span>
+            <span></span>
+        </div>
     </div>
+    
     <div class="sidebar" id="sidebar">
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Menu</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#" data-section="home">Home</a>
+            <a href="#" data-section="menu">Menu</a>
+            <a href="#" data-section="about">About</a>
+            <a href="#" data-section="contact">Contact</a>
         </nav>
     </div>
+    
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Pizza</h1>
+                <p class="tagline slide-up">Authentic Italian Pizza Since 1985</p>
+                <a href="#" class="btn pulse" data-section="menu">View Our Menu</a>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-icon"></div>
+            </div>
+        </section>
+        
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal">Our Menu</h2>
+                    <p class="section-subtitle">Crafted with passion, served with love</p>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-img" style="background-image: url('./assets/margherita.png')"></div>
+                        <div class="menu-content">
+                            <h3>Margherita</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                            <div class="menu-footer">
+                                <span class="price">$14.99</span>
+                                <span class="badge">Best Seller</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-img" style="background-image: url('./assets/pepperoni.png')"></div>
+                        <div class="menu-content">
+                            <h3>Pepperoni</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut enim ad minim veniam quis.</p>
+                            <div class="menu-footer">
+                                <span class="price">$16.99</span>
+                                <span class="badge">Spicy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-img" style="background-image: url('./assets/vegetarian.png')"></div>
+                        <div class="menu-content">
+                            <h3>Vegetarian</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit duis aute irure dolor in.</p>
+                            <div class="menu-footer">
+                                <span class="price">$15.99</span>
+                                <span class="badge vegetarian">Veg</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-img" style="background-image: url('./assets/meatlovers.png')"></div>
+                        <div class="menu-content">
+                            <h3>Meat Lovers</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit excepteur sint occaecat cupidatat.</p>
+                            <div class="menu-footer">
+                                <span class="price">$18.99</span>
+                                <span class="badge premium">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal">Our Story</h2>
+                    <p class="section-subtitle">Three generations of pizza perfection</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Master Chefs</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.7l-1 3c-.2.5 0 1 .3 1.3L9 19l1 1 1 1 1 1 2-2 2-2 2-2 1.8-1.8c.3-.3.4-.7.2-1.2z"/>
+                            </svg>
+                        </div>
+                        <h3>Wood-Fired Ovens</h3>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3>Fresh Ingredients</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="./assets/about.png" alt="Pizza chef">
+                    </div>
+                    <div class="about-text">
+                        <h3>Family Tradition Since 1985</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <a href="#" class="btn btn-outline" data-section="contact">Visit Us Today</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal">Visit Us</h2>
+                    <p class="section-subtitle">Experience authentic Italian flavors</p>
+                </div>
+                <div class="contact-main">
+                    <div class="contact-grid">
+                        <div class="contact-card location-card">
+                            <div class="contact-card-header">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </div>
+                                <h3>Our Location</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <div class="contact-address">
+                                    <p class="highlight">123 Pizza Street</p>
+                                    <p class="subdued">New York, NY 10001</p>
+                                </div>
+                                <div class="contact-features">
+                                    <div class="feature">
+                                        <span class="feature-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                                <line x1="9" y1="21" x2="9" y2="9"/>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-text">Free Parking</span>
+                                    </div>
+                                    <div class="feature">
+                                        <span class="feature-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-text">Outdoor Seating</span>
+                                    </div>
+                                    <div class="feature">
+                                        <span class="feature-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                                            </svg>
+                                        </span>
+                                        <span class="feature-text">Delivery Available</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card hours-card">
+                            <div class="contact-card-header">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12 6 12 12 16 14"/>
+                                    </svg>
+                                </div>
+                                <h3>Opening Hours</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <div class="hours-grid">
+                                    <div class="hour-row">
+                                        <span class="day">Monday - Thursday</span>
+                                        <span class="time">11:00 AM - 10:00 PM</span>
+                                    </div>
+                                    <div class="hour-row highlight-row">
+                                        <span class="day">Friday - Saturday</span>
+                                        <span class="time">11:00 AM - 11:00 PM</span>
+                                    </div>
+                                    <div class="hour-row">
+                                        <span class="day">Sunday</span>
+                                        <span class="time">12:00 PM - 9:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="hours-note">
+                                    <span class="note-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                        </svg>
+                                    </span>
+                                    <span>Happy Hour: 4PM - 6PM Daily</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card contact-info-card">
+                            <div class="contact-card-header">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <h3>Get In Touch</h3>
+                            </div>
+                            <div class="contact-card-body">
+                                <div class="contact-info">
+                                    <a href="tel:5551234567" class="contact-link">
+                                        <span class="link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                            </svg>
+                                        </span>
+                                        <span>(555) 123-4567</span>
+                                    </a>
+                                    <a href="mailto:info@pizzapalace.com" class="contact-link">
+                                        <span class="link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                <polyline points="22,6 12,13 2,6"/>
+                                            </svg>
+                                        </span>
+                                        <span>info@pizzapalace.com</span>
+                                    </a>
+                                </div>
+                                <div class="social-section">
+                                    <p class="social-title">Follow Our Journey</p>
+                                    <div class="social-grid">
+                                        <a href="#" class="social-item instagram">
+                                            <span class="social-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                                                </svg>
+                                            </span>
+                                            <span>Instagram</span>
+                                        </a>
+                                        <a href="#" class="social-item facebook">
+                                            <span class="social-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                                                </svg>
+                                            </span>
+                                            <span>Facebook</span>
+                                        </a>
+                                        <a href="#" class="social-item twitter">
+                                            <span class="social-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                                                </svg>
+                                            </span>
+                                            <span>Twitter</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Pizza Palace</h3>
+                    <p>Serving authentic pizza since 1985</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" data-section="home">Home</a>
+                    <a href="#" data-section="menu">Menu</a>
+                    <a href="#" data-section="about">About</a>
+                    <a href="#" data-section="contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>
