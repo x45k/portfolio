@@ -1,3 +1,62 @@
+const prices = {
+    "basic": "50",
+    "standard": "80"
+}
+
+async function fetchCountryAndCurrency() {
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        return {
+            country: data.country_name,
+            currency: data.currency
+        };
+    } catch (error) {
+        return {
+            country: 'your location',
+            currency: 'EUR'
+        };
+    }
+}
+
+async function getExchangeRate(userCurrency) {
+    try {
+        const response = await fetch(`https://api.frankfurter.dev/v1/latest?base=CHF&symbols=${userCurrency}`);
+        const data = await response.json();
+        return data.rates[userCurrency];
+    } catch (error) {
+        return 1;
+    }
+}
+
+function getCurrencySymbol(currencyCode) {
+    const symbols = {
+        'USD': '$',
+        'EUR': '€',
+        'GBP': '£',
+        'JPY': '¥',
+        'CAD': 'CA$',
+        'AUD': 'A$',
+        'CNY': '¥',
+        'INR': '₹'
+    };
+    return symbols[currencyCode] || '';
+}
+
+async function updateButtonTextWithCurrency() {
+    const locationData = await fetchCountryAndCurrency();
+    const exchangeRate = await getExchangeRate(locationData.currency);
+    const priceInCHF = parseFloat(prices.standard);
+    const convertedPrice = priceInCHF * exchangeRate;
+    const currencySymbol = getCurrencySymbol(locationData.currency);
+    
+    const currencyTextElements = document.querySelectorAll('.currency-text');
+    
+    currencyTextElements.forEach(element => {
+        element.textContent = `${currencySymbol}${convertedPrice.toFixed(2)} ${locationData.currency}`;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -36,4 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
             themeToggle.style.transform = 'scale(1)';
         }, 150);
     });
+
+    updateButtonTextWithCurrency();
 });
