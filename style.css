@@ -142,7 +142,7 @@ main {
     transition: background-color 0.4s ease;
 }
 
-#examples, #contact {
+#examples, #packages, #contact {
     padding: 40px 15px;
     text-align: center;
     background-color: #121212;
@@ -150,11 +150,12 @@ main {
 }
 
 .light-mode #examples,
+.light-mode #packages,
 .light-mode #contact {
     background-color: #ffffff;
 }
 
-#examples h2, #contact h2 {
+#examples h2, #packages h2, #contact h2 {
     margin: 0 0 20px 0;
     font-size: 1.8em;
     color: #ffffff;
@@ -164,12 +165,23 @@ main {
     transition: color 0.4s ease;
 }
 
+#packages h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+    color: #ffffff;
+    font-weight: 300;
+    position: relative;
+    display: inline-block;
+    transition: color 0.4s ease;
+}
+
 .light-mode #examples h2,
+.light-mode #packages h2,
 .light-mode #contact h2 {
     color: #222222;
 }
 
-#examples h2::after, #contact h2::after {
+#examples h2::after, #packages h2::after, #contact h2::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -182,11 +194,12 @@ main {
 }
 
 .light-mode #examples h2::after,
+.light-mode #packages h2::after,
 .light-mode #contact h2::after {
     background: #222222;
 }
 
-.examples-container {
+.examples-container, .packages-container {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -197,7 +210,7 @@ main {
     margin-right: auto;
 }
 
-.example-card {
+.example-card, .package-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,20 +224,22 @@ main {
     transition: all 0.4s ease;
 }
 
-.light-mode .example-card {
+.light-mode .example-card,
+.light-mode .package-card {
     background-color: #f8f9fa;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.example-card:hover {
+.example-card:hover, .package-card:hover {
     transform: translateY(-10px);
 }
 
-.light-mode .example-card:hover {
+.light-mode .example-card:hover,
+.light-mode .package-card:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-.example-image {
+.example-image, .package-image {
     width: 100%;
     height: 180px;
     border-radius: 12px;
@@ -234,11 +249,12 @@ main {
     transition: all 0.3s ease;
 }
 
-.example-card:hover .example-image {
+.example-card:hover .example-image,
+.package-card:hover .package-image {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.check-button {
+.check-button, .purchase-button {
     background-color: #ffffff;
     color: #121212;
     border: none;
@@ -253,17 +269,19 @@ main {
     letter-spacing: 0.5px;
 }
 
-.light-mode .check-button {
+.light-mode .check-button,
+.light-mode .purchase-button {
     background-color: #222222;
     color: #ffffff;
 }
 
-.check-button:hover {
+.check-button:hover, .purchase-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.light-mode .check-button:hover {
+.light-mode .check-button:hover,
+.light-mode .purchase-button:hover {
     background-color: #444444;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -285,7 +303,7 @@ main {
     to { opacity: 1; transform: translateY(0); }
 }
 
-#examples, #contact {
+#examples, #packages, #contact {
     animation: fadeIn 0.6s ease-out;
 }
 
@@ -318,26 +336,26 @@ main {
         margin-left: 20px;
     }
     
-    #examples, #contact {
+    #examples, #packages, #contact {
         padding: 80px 20px;
     }
     
-    #examples h2, #contact h2 {
+    #examples h2, #packages h2, #contact h2 {
         font-size: 2.5em;
     }
     
-    .examples-container {
+    .examples-container, .packages-container {
         gap: 40px;
         margin-top: 50px;
     }
     
-    .example-card {
+    .example-card, .package-card {
         max-width: 320px;
         margin-bottom: 0;
         padding: 20px;
     }
     
-    .example-image {
+    .example-image, .package-image {
         height: 240px;
         margin-bottom: 20px;
     }
@@ -345,4 +363,62 @@ main {
     #contact h4 {
         font-size: 1.1em;
     }
+}
+
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.package-features li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.9em;
+}
+
+.package-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+}
+
+.light-mode .package-features li:before {
+    color: #2E7D32;
+}
+
+.package-price {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+.light-mode .package-price {
+    color: #222222;
+}
+
+.package-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.light-mode .package-badge {
+    background: linear-gradient(135deg, #FF5252, #FF7B47);
+}
+
+.package-card {
+    position: relative;
 }

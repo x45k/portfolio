@@ -20,7 +20,7 @@ function smoothScroll(targetId) {
     const targetElement = document.getElementById(targetId);
     if (!targetElement) return;
     
-    const headerOffset = 80;
+    const headerOffset = 60;
     const elementPosition = targetElement.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
     
@@ -54,7 +54,7 @@ if (scrollIcon) {
 
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -91,13 +91,11 @@ document.querySelectorAll('.contact-link').forEach(link => {
 const hourRows = document.querySelectorAll('.hour-row');
 hourRows.forEach(row => {
     row.addEventListener('mouseenter', () => {
-        row.style.transform = 'translateX(10px)';
-        row.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        row.style.transform = 'translateX(8px)';
     });
     
     row.addEventListener('mouseleave', () => {
         row.style.transform = 'translateX(0)';
-        row.style.boxShadow = 'none';
     });
 });
 
@@ -158,3 +156,15 @@ function highlightCurrentDayHours() {
 }
 
 highlightCurrentDayHours();
+
+document.addEventListener('click', (e) => {
+    const isDesktop = window.innerWidth >= 1024;
+    const isSidebarOpen = sidebar.classList.contains('active');
+    const isClickOnMenuToggle = menuToggle.contains(e.target);
+    const isClickOnSidebar = sidebar.contains(e.target);
+    
+    if (isDesktop && isSidebarOpen && !isClickOnSidebar && !isClickOnMenuToggle) {
+        menuToggle.classList.remove('active');
+        sidebar.classList.remove('active');
+    }
+});
