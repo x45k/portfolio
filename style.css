@@ -175,6 +175,10 @@ main {
     transition: color 0.4s ease;
 }
 
+.light-mode #packages h3 {
+    color: #222222;
+}
+
 .light-mode #examples h2,
 .light-mode #packages h2,
 .light-mode #contact h2 {

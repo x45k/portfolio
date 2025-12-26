@@ -13,8 +13,9 @@
         <h1>Portfolio</h1> 
         <nav>
             <ul>
-                <li><a href="#examples">Examples</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="javascript:void(0);" onclick="document.getElementById('examples').scrollIntoView({behavior: 'smooth'});">Examples</a></li>
+                <li><a href="javascript:void(0);" onclick="document.getElementById('packages').scrollIntoView({behavior: 'smooth'});">Packages</a></li>
+                <li><a href="javascript:void(0);" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact</a></li>
             </ul>
         </nav>
         <button id="theme-toggle" class="theme-toggle">
@@ -47,12 +48,12 @@
             <h2>Packages</h2>
             <div class="examples-container">
                 <div class="example-card">
-                    <h3>Standard</h3>
-                    <button class="check-button" onclick="">Interested? <br><span class="currency-text">(Loading...)</span></button>
+                    <h3>Basic</h3>
+                    <button class="check-button" onclick="">Interested? <br><span class="currency-text-basic">(Loading...)</span></button>
                 </div>
                 <div class="example-card">
-                    <img src="./assets/canvas.png" alt="Canvas Package" class="example-image">
-                    <button class="check-button" onclick="">Check it out</button>
+                    <h3>Standard</h3>
+                    <button class="check-button" onclick="">Interested? <br><span class="currency-text-standard">(Loading...)</span></button>
                 </div>
             </div>
         </div>

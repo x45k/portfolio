@@ -46,14 +46,22 @@ function getCurrencySymbol(currencyCode) {
 async function updateButtonTextWithCurrency() {
     const locationData = await fetchCountryAndCurrency();
     const exchangeRate = await getExchangeRate(locationData.currency);
-    const priceInCHF = parseFloat(prices.standard);
-    const convertedPrice = priceInCHF * exchangeRate;
     const currencySymbol = getCurrencySymbol(locationData.currency);
     
-    const currencyTextElements = document.querySelectorAll('.currency-text');
+    const priceBasicCHF = parseFloat(prices.basic);
+    const convertedBasicPrice = priceBasicCHF * exchangeRate;
+    const currencyBasicElements = document.querySelectorAll('.currency-text-basic');
     
-    currencyTextElements.forEach(element => {
-        element.textContent = `${currencySymbol}${convertedPrice.toFixed(2)} ${locationData.currency}`;
+    currencyBasicElements.forEach(element => {
+        element.textContent = `${currencySymbol}${convertedBasicPrice.toFixed(2)} ${locationData.currency}`;
+    });
+    
+    const priceStandardCHF = parseFloat(prices.standard);
+    const convertedStandardPrice = priceStandardCHF * exchangeRate;
+    const currencyStandardElements = document.querySelectorAll('.currency-text-standard');
+    
+    currencyStandardElements.forEach(element => {
+        element.textContent = `${currencySymbol}${convertedStandardPrice.toFixed(2)} ${locationData.currency}`;
     });
 }
 
