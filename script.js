@@ -1,4 +1,6 @@
 const prices = {
+    "basichosting": "5",
+    "customdomain": "8.73",
     "basic": "50",
     "standard": "80"
 }
@@ -53,7 +55,7 @@ async function updateButtonTextWithCurrency() {
     const currencyBasicElements = document.querySelectorAll('.currency-text-basic');
     
     currencyBasicElements.forEach(element => {
-        element.textContent = `${currencySymbol}${convertedBasicPrice.toFixed(2)} ${locationData.currency}`;
+        element.textContent = `${currencySymbol}${Math.ceil(convertedBasicPrice).toFixed(2)} ${locationData.currency}`;
     });
     
     const priceStandardCHF = parseFloat(prices.standard);
@@ -61,7 +63,23 @@ async function updateButtonTextWithCurrency() {
     const currencyStandardElements = document.querySelectorAll('.currency-text-standard');
     
     currencyStandardElements.forEach(element => {
-        element.textContent = `${currencySymbol}${convertedStandardPrice.toFixed(2)} ${locationData.currency}`;
+        element.textContent = `${currencySymbol}${Math.ceil(convertedStandardPrice).toFixed(2)} ${locationData.currency}`;
+    });
+
+    const priceBasicHostingCHF = parseFloat(prices.basichosting);
+    const convertedBasicHostingPrice = priceBasicHostingCHF * exchangeRate;
+    const currencyBasicHostingElements = document.querySelectorAll('.currency-text-basichosting');
+    
+    currencyBasicHostingElements.forEach(element => {
+        element.textContent = `${currencySymbol}${Math.ceil(convertedBasicHostingPrice).toFixed(2)} ${locationData.currency}`;
+    });
+
+    const priceCustomDomainCHF = parseFloat(prices.customdomain);
+    const convertedCustomDomainPrice = priceCustomDomainCHF * exchangeRate;
+    const currencyCustomDomainElements = document.querySelectorAll('.currency-text-customdomain');
+    
+    currencyCustomDomainElements.forEach(element => {
+        element.textContent = `${currencySymbol}${Math.ceil(convertedCustomDomainPrice).toFixed(2)} ${locationData.currency}`;
     });
 }
 
