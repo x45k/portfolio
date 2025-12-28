@@ -16,7 +16,7 @@ async function fetchCountryAndCurrency() {
     } catch (error) {
         return {
             country: 'your location',
-            currency: 'EUR'
+            currency: 'GBP'
         };
     }
 }
