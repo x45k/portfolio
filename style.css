@@ -235,11 +235,18 @@ main {
     padding: 15px;
     transition: all 0.4s ease;
 }
+.example-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
 
 .light-mode .example-card,
 .light-mode .package-card {
     background-color: #f8f9fa;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .example-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .example-card:hover, .package-card:hover {
