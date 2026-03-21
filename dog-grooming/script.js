@@ -160,91 +160,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    const appointmentForm = document.getElementById('appointment-form');
-    if (appointmentForm) {
-        appointmentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name')?.value || '';
-            const email = document.getElementById('email')?.value || '';
-            const phone = document.getElementById('phone')?.value || '';
-            const petName = document.getElementById('pet-name')?.value || '';
-            const service = document.getElementById('service-select')?.value || '';
-            const message = document.getElementById('message')?.value || '';
-            
-            if (name && email && phone) {
-                const successMessage = document.createElement('div');
-                successMessage.textContent = '✓ Appointment request sent! We\'ll contact you within 2 hours.';
-                successMessage.style.backgroundColor = 'var(--primary)';
-                successMessage.style.color = 'white';
-                successMessage.style.padding = '12px 20px';
-                successMessage.style.borderRadius = '12px';
-                successMessage.style.marginTop = '16px';
-                successMessage.style.textAlign = 'center';
-                successMessage.style.fontSize = '14px';
-                
-                const existingMessage = appointmentForm.querySelector('.success-message');
-                if (existingMessage) existingMessage.remove();
-                successMessage.classList.add('success-message');
-                appointmentForm.appendChild(successMessage);
-                
-                appointmentForm.reset();
-                
-                setTimeout(() => {
-                    successMessage.remove();
-                }, 4000);
-            } else {
-                const errorMessage = document.createElement('div');
-                errorMessage.textContent = 'Please fill in all required fields (Name, Email, Phone).';
-                errorMessage.style.backgroundColor = '#e74c3c';
-                errorMessage.style.color = 'white';
-                errorMessage.style.padding = '12px 20px';
-                errorMessage.style.borderRadius = '12px';
-                errorMessage.style.marginTop = '16px';
-                errorMessage.style.textAlign = 'center';
-                errorMessage.style.fontSize = '14px';
-                
-                const existingError = appointmentForm.querySelector('.error-message');
-                if (existingError) existingError.remove();
-                errorMessage.classList.add('error-message');
-                appointmentForm.appendChild(errorMessage);
-                
-                setTimeout(() => {
-                    errorMessage.remove();
-                }, 4000);
-            }
-        });
-    }
+    const today = new Date();
+    const dayOfWeek = today.getDay();
     
-    const newsletterForm = document.querySelector('#newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            if (emailInput && emailInput.value) {
-                const message = document.createElement('div');
-                message.textContent = '✓ Subscribed successfully!';
-                message.style.backgroundColor = 'var(--primary)';
-                message.style.color = 'white';
-                message.style.padding = '8px 16px';
-                message.style.borderRadius = '8px';
-                message.style.marginTop = '12px';
-                message.style.fontSize = '12px';
-                message.style.textAlign = 'center';
-                
-                const existing = this.querySelector('.subscribe-message');
-                if (existing) existing.remove();
-                message.classList.add('subscribe-message');
-                this.appendChild(message);
-                
-                emailInput.value = '';
-                
-                setTimeout(() => {
-                    message.remove();
-                }, 3000);
-            }
-        });
-    }
+    const hourGroups = document.querySelectorAll('.hour-group');
+    hourGroups.forEach(group => {
+        const daysAttr = group.getAttribute('data-days');
+        let shouldHighlight = false;
+        
+        if (daysAttr === 'mon-fri' && dayOfWeek >= 1 && dayOfWeek <= 5) {
+            shouldHighlight = true;
+        } else if (daysAttr === 'saturday' && dayOfWeek === 6) {
+            shouldHighlight = true;
+        } else if (daysAttr === 'sunday' && dayOfWeek === 0) {
+            shouldHighlight = true;
+        }
+        
+        if (shouldHighlight) {
+            group.classList.add('today-highlight');
+        }
+    });
     
     const style = document.createElement('style');
     style.textContent = `

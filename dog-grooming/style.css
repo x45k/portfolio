@@ -702,6 +702,107 @@ h1, h2, h3, h4, .logo-text {
     line-height: 1.5;
 }
 
+.hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.hour-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.hour-group.today-highlight {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.hour-group.today-highlight span:first-child {
+    font-weight: 700;
+}
+
+.contact-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-card {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 400px;
+    transition: var(--transition);
+}
+
+.image-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 32px;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 24px;
+    text-align: center;
+    color: white;
+}
+
+.image-overlay i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.image-overlay p {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 48px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .about-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+    
+    .contact-image {
+        order: -1;
+    }
+    
+    .image-card {
+        max-width: 100%;
+    }
+}
+
 .footer {
     background-color: var(--text-dark);
     padding: 48px 0;
@@ -759,6 +860,10 @@ h1, h2, h3, h4, .logo-text {
     .contact-container {
         grid-template-columns: 1fr;
         gap: 48px;
+    }
+    
+    .schedule-section {
+        margin-top: 32px;
     }
 }
 
