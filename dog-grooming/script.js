@@ -41,10 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    navLinksItems.forEach(link => {
+    const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+    allAnchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = href.substring(1);
             const targetSection = document.getElementById(targetId);
             
             if (targetSection) {
@@ -56,8 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
                 
-                navLinksItems.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
+                if (navLinksItems.includes(this)) {
+                    navLinksItems.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
                 
                 if (window.innerWidth <= 768 && navLinks) {
                     navLinks.style.display = 'none';
