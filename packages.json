@@ -1,0 +1,51 @@
+{
+    "pricesCHF": {
+        "basic": 50,
+        "custom": 80,
+        "basichosting": 5,
+        "customdomain": 8.73
+    },
+    "packages": [
+        {
+            "name": "Basic",
+            "priceKey": "basic",
+            "pricePrefix": "",
+            "description": "A clean, professional single-page website to establish your online presence.",
+            "popular": false,
+            "features": [
+                { "text": "Complete static site (HTML, CSS, JS)", "included": true },
+                { "text": "Google Maps location integration", "included": true },
+                { "text": "Essential SEO", "included": true },
+                { "text": "Fully responsive, mobile-first design", "included": true },
+                { "text": "Cross-browser compatibility", "included": true },
+                { "text": "Single-page website", "included": true },
+                { "text": "4 rounds of free revisions", "included": true },
+                { "text": "Basic setup and hosting support before handover", "included": false },
+                { "text": "Engaging animations & interactions", "included": false },
+                { "text": "Custom domain setup and purchase support", "included": false },
+                { "text": "Admin page for easy content updates", "included": false }
+            ]
+        },
+        {
+            "name": "Custom",
+            "priceKey": "custom",
+            "pricePrefix": "Starting from ",
+            "description": "A fully customized website designed to meet your unique business needs.",
+            "popular": true,
+            "features": [
+                { "text": "Complete static site (HTML, CSS, JS)", "included": true },
+                { "text": "Google Maps location integration", "included": true },
+                { "text": "Advanced SEO", "included": true },
+                { "text": "Fully responsive, mobile-first design", "included": true },
+                { "text": "Cross-browser compatibility", "included": true },
+                { "text": "Complimentary hosting", "included": true },
+                { "text": "Multi-page website, first three pages at no extra cost", "included": true },
+                { "text": "8 rounds of free revisions", "included": true },
+                { "text": "Dedicated setup and hosting support before handover", "included": true },
+                { "text": "Engaging animations & interactions", "included": true },
+                { "text": "Custom domain setup and purchase support", "included": true },
+                { "text": "Admin page for easy content updates", "included": true }
+            ]
+        }
+    ]
+}

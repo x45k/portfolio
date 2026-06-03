@@ -1,23 +1,10 @@
-const prices = {
-    "basichosting": "5",
-    "customdomain": "8.73",
-    "basic": "50",
-    "standard": "80"
-}
-
 async function fetchCountryAndCurrency() {
     try {
         const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
-        return {
-            country: data.country_name,
-            currency: data.currency
-        };
+        return { country: data.country_name, currency: data.currency };
     } catch (error) {
-        return {
-            country: 'your location',
-            currency: 'GBP'
-        };
+        return { country: 'your location', currency: 'GBP' };
     }
 }
 
@@ -33,63 +20,106 @@ async function getExchangeRate(userCurrency) {
 
 function getCurrencySymbol(currencyCode) {
     const symbols = {
-        'USD': '$',
-        'EUR': '€',
-        'GBP': '£',
-        'JPY': '¥',
-        'CAD': 'CA$',
-        'AUD': 'A$',
-        'CNY': '¥',
-        'INR': '₹'
+        'USD': '$', 'EUR': '\u20ac', 'GBP': '\u00a3',
+        'JPY': '\u00a5', 'CAD': 'CA$', 'AUD': 'A$',
+        'CNY': '\u00a5', 'INR': '\u20b9'
     };
     return symbols[currencyCode] || '';
 }
 
-async function updateButtonTextWithCurrency() {
-    const locationData = await fetchCountryAndCurrency();
-    const exchangeRate = await getExchangeRate(locationData.currency);
-    const currencySymbol = getCurrencySymbol(locationData.currency);
+function formatPrice(chfAmount, exchangeRate, currencySymbol, currencyCode) {
+    const converted = chfAmount * exchangeRate;
+    return `${currencySymbol}${Math.ceil(converted).toFixed(2)} ${currencyCode}`;
+}
 
-    const priceBasicCHF = parseFloat(prices.basic);
-    const convertedBasicPrice = priceBasicCHF * exchangeRate;
-    const currencyBasicElements = document.querySelectorAll('.currency-text-basic');
-
-    currencyBasicElements.forEach(element => {
-        element.textContent = `${currencySymbol}${Math.ceil(convertedBasicPrice).toFixed(2)} ${locationData.currency}`;
+function replacePlaceholders(text, pricesCHF, exchangeRate, currencySymbol, currencyCode) {
+    return text.replace(/\{\{(\w+)\}\}/g, function(_, key) {
+        if (pricesCHF[key] !== undefined) {
+            return formatPrice(pricesCHF[key], exchangeRate, currencySymbol, currencyCode);
+        }
+        return `{{${key}}}`;
     });
+}
 
-    const priceStandardCHF = parseFloat(prices.standard);
-    const convertedStandardPrice = priceStandardCHF * exchangeRate;
-    const currencyStandardElements = document.querySelectorAll('.currency-text-standard');
+async function fetchPackages() {
+    const container = document.getElementById('packages-container');
+    if (!container) return;
 
-    currencyStandardElements.forEach(element => {
-        element.textContent = `${currencySymbol}${Math.ceil(convertedStandardPrice).toFixed(2)} ${locationData.currency}`;
-    });
+    try {
+        const [jsonResponse, locationData] = await Promise.all([
+            fetch('./packages.json'),
+            fetchCountryAndCurrency()
+        ]);
 
-    const priceBasicHostingCHF = parseFloat(prices.basichosting);
-    const convertedBasicHostingPrice = priceBasicHostingCHF * exchangeRate;
-    const currencyBasicHostingElements = document.querySelectorAll('.currency-text-basichosting');
+        const data = await jsonResponse.json();
+        const exchangeRate = await getExchangeRate(locationData.currency);
+        const currencySymbol = getCurrencySymbol(locationData.currency);
 
-    currencyBasicHostingElements.forEach(element => {
-        element.textContent = `${currencySymbol}${Math.ceil(convertedBasicHostingPrice).toFixed(2)} ${locationData.currency}`;
-    });
+        const html = data.packages.map(function(pkg) {
+            const priceStr = formatPrice(
+                data.pricesCHF[pkg.priceKey],
+                exchangeRate, currencySymbol, locationData.currency
+            );
 
-    const priceCustomDomainCHF = parseFloat(prices.customdomain);
-    const convertedCustomDomainPrice = priceCustomDomainCHF * exchangeRate;
-    const currencyCustomDomainElements = document.querySelectorAll('.currency-text-customdomain');
+            const featuresHtml = pkg.features.map(function(f) {
+                var text = replacePlaceholders(f.text, data.pricesCHF, exchangeRate, currencySymbol, locationData.currency);
+                var icon = f.included ? 'fa-check' : 'fa-times';
+                var cls = f.included ? '' : ' class="not-included"';
+                return '<li' + cls + '><i class="fas ' + icon + '"></i> ' + text + '</li>';
+            }).join('');
 
-    currencyCustomDomainElements.forEach(element => {
-        element.textContent = `${currencySymbol}${Math.ceil(convertedCustomDomainPrice).toFixed(2)} ${locationData.currency}`;
-    });
+            var popularClass = pkg.popular ? ' popular' : '';
+            var badgeHtml = pkg.popular ? '<div class="package-badge">Most Popular</div>' : '';
+
+            return (
+                '<div class="package-card' + popularClass + '">' +
+                    badgeHtml +
+                    '<h3>' + pkg.name + '</h3>' +
+                    '<div class="package-price">' + (pkg.pricePrefix || '') + priceStr + '</div>' +
+                    '<p class="package-description">' + pkg.description + '</p>' +
+                    '<ul class="package-features">' + featuresHtml + '</ul>' +
+                    '<a href="#contact" class="btn btn-primary btn-block">Get Started</a>' +
+                '</div>'
+            );
+        }).join('');
+
+        container.innerHTML = html;
+
+        observeNewCards();
+    } catch (error) {
+        container.innerHTML = '<div class="loading-packages">Failed to load packages. Please refresh.</div>';
+    }
+}
+
+function observeNewCards() {
+    var cards = document.querySelectorAll('.package-card');
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(function(el) {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    } else {
+        cards.forEach(function(el) {
+            el.classList.add('visible');
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     // ── Hamburger Menu ──
 
-    const body = document.body;
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('main-nav');
-    const backdrop = document.getElementById('nav-backdrop');
+    var body = document.body;
+    var hamburger = document.getElementById('hamburger');
+    var nav = document.getElementById('main-nav');
+    var backdrop = document.getElementById('nav-backdrop');
 
     function closeNav() {
         hamburger.classList.remove('active');
@@ -121,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ── Header Shrink on Scroll ──
 
-    const header = document.querySelector('header');
+    var header = document.querySelector('header');
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -131,14 +161,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
-    // ── Scroll Animations with IntersectionObserver ──
+    // ── Scroll Animations ──
 
-    const animatedElements = document.querySelectorAll(
-        '.example-card, .value-card, .package-card, .section-header, .contact-card'
+    var staticElements = document.querySelectorAll(
+        '.example-card, .value-card, .section-header, .contact-card'
     );
 
     if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(function(entries) {
+        var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -146,17 +176,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, { threshold: 0.1 });
 
-        animatedElements.forEach(function(el) {
+        staticElements.forEach(function(el) {
             el.classList.add('fade-in');
             observer.observe(el);
         });
     } else {
-        animatedElements.forEach(function(el) {
+        staticElements.forEach(function(el) {
             el.classList.add('visible');
         });
     }
 
-    // ── Currency ──
+    // ── Packages (fetched from JSON) ──
 
-    updateButtonTextWithCurrency();
+    fetchPackages();
 });
