@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ── Scroll Animations ──
 
     var staticElements = document.querySelectorAll(
-        '.value-card, .section-header, .contact-card'
+        '.portfolio-card, .section-header, .contact-card'
     );
 
     if ('IntersectionObserver' in window) {
