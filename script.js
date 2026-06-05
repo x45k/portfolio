@@ -149,18 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', closeNav);
     });
 
-    // ── Header Shrink on Scroll ──
-
-    var header = document.querySelector('header');
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, { passive: true });
-
     // ── Scroll Animations ──
 
     var staticElements = document.querySelectorAll(

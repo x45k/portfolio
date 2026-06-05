@@ -60,30 +60,27 @@ ul {
 
 header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--header-h);
-    background: rgba(15, 15, 15, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+    top: 12px;
+    left: 12px;
+    width: calc(100% - 24px);
+    max-width: calc(var(--max-w) + 40px);
+    margin: 0;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     z-index: 100;
-    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
-}
-
-header.scrolled {
-    box-shadow: var(--shadow);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), border-radius var(--transition);
 }
 
 .header-inner {
     max-width: var(--max-w);
     margin: 0 auto;
     padding: 0 20px;
-    height: 100%;
+    height: var(--header-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: height var(--transition);
 }
 
 .logo {
@@ -91,7 +88,7 @@ header.scrolled {
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text-primary);
-    transition: color var(--transition);
+    transition: color var(--transition), opacity 0.1s ease;
 }
 
 /* ── Nav ── */
@@ -116,8 +113,43 @@ nav a:hover {
 }
 
 @media (min-width: 768px) {
+    header {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: calc(var(--max-w) + 40px);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: var(--header-h);
+    }
+
+    .header-inner {
+        height: auto;
+        padding: 0;
+        margin: 0;
+        max-width: none;
+        flex: 0 0 auto;
+    }
+
     nav {
         margin-left: auto;
+        max-height: none;
+        overflow: visible;
+        padding: 0;
+        background: none;
+        border: none;
+        width: auto;
+        border-radius: 0;
+        position: static;
+    }
+
+    nav ul {
+        flex-direction: row;
+        opacity: 1;
+        transform: none;
+        padding: 0;
     }
 
     .header-actions {
@@ -176,6 +208,12 @@ nav a:hover {
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 98;
+    pointer-events: none;
+}
+
+.nav-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ── Hero ── */
@@ -764,31 +802,41 @@ footer {
     }
 
     nav {
-        position: fixed;
-        top: 0;
-        right: -280px;
-        width: 260px;
-        height: 100vh;
-        background: var(--bg-secondary);
-        border-left: 1px solid var(--border);
-        padding: 80px 32px 32px;
-        transition: right 0.3s ease;
-        z-index: 101;
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease, padding 0.2s ease;
+        position: static;
+        background: none;
+        border: none;
+        width: auto;
+        border-radius: 0;
     }
 
     nav.active {
-        right: 0;
+        max-height: 400px;
+        padding: 0 20px 16px;
     }
 
     nav ul {
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 0.25s ease 0.15s, transform 0.25s ease 0.15s;
+    }
+
+    nav.active ul {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     nav a {
         display: block;
-        padding: 12px 16px;
-        font-size: 1.05rem;
+        padding: 12px 0;
+        font-size: 1rem;
+        border-radius: var(--radius-sm);
     }
 
     .nav-backdrop {
@@ -797,6 +845,7 @@ footer {
 
     .nav-backdrop.active {
         opacity: 1;
+        pointer-events: auto;
     }
 
     body.nav-open {
