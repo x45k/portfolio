@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var hamburger = document.getElementById('hamburger');
     var nav = document.getElementById('main-nav');
     var backdrop = document.getElementById('nav-backdrop');
+    var header = document.querySelector('header');
 
     function closeNav() {
         hamburger.classList.remove('active');
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ── Scroll Animations ──
 
     var staticElements = document.querySelectorAll(
-        '.example-card, .value-card, .section-header, .contact-card'
+        '.value-card, .section-header, .contact-card'
     );
 
     if ('IntersectionObserver' in window) {
@@ -173,6 +174,31 @@ document.addEventListener('DOMContentLoaded', function() {
             el.classList.add('visible');
         });
     }
+
+    // ── Hide Header on Scroll Down ──
+
+    var lastScrollY = window.scrollY;
+    var ticking = false;
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                var currentY = window.scrollY;
+                if (nav.classList.contains('active')) {
+                    ticking = false;
+                    return;
+                }
+                if (currentY > 100 && currentY > lastScrollY) {
+                    header.classList.add('header--hidden');
+                } else {
+                    header.classList.remove('header--hidden');
+                }
+                lastScrollY = currentY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
 
     // ── Packages (fetched from JSON) ──
 

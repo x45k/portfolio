@@ -1,14 +1,14 @@
 {
     "pricesCHF": {
-        "basic": 50,
-        "custom": 80,
+        "minimal": 80,
+        "custom": 120,
         "basichosting": 5,
         "customdomain": 8.73
     },
     "packages": [
         {
-            "name": "Basic",
-            "priceKey": "basic",
+            "name": "Minimal",
+            "priceKey": "minimal",
             "pricePrefix": "",
             "description": "A clean, professional single-page website to establish your online presence.",
             "popular": false,

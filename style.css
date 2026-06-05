@@ -65,11 +65,15 @@ header {
     width: calc(100% - 24px);
     max-width: calc(var(--max-w) + 40px);
     margin: 0;
-    background: #0f0f0f;
+    background: linear-gradient(180deg, #0f0f0f 0%, #141414 100%);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     z-index: 100;
-    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), border-radius var(--transition);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), border-radius var(--transition), transform 0.3s ease;
+}
+
+header.header--hidden {
+    transform: translateY(calc(-100% - 24px));
 }
 
 .header-inner {
@@ -89,6 +93,13 @@ header {
     letter-spacing: -0.02em;
     color: var(--text-primary);
     transition: color var(--transition), opacity 0.1s ease;
+}
+
+.logo-tld {
+    font-size: 0.65em;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-left: 1px;
 }
 
 /* ── Nav ── */
@@ -240,7 +251,7 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
-.hero-content h1 .highlight {
+.highlight {
     color: var(--accent);
 }
 
@@ -349,102 +360,6 @@ section {
     line-height: 1.6;
 }
 
-/* ── Examples ── */
-
-#examples {
-    padding-top: calc(var(--header-h) + 40px);
-}
-
-.examples-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-    max-width: var(--max-w);
-    margin: 0 auto;
-}
-
-.example-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, var(--bg-secondary) 100%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: all var(--transition);
-}
-
-.example-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    border-color: var(--text-muted);
-}
-
-.example-image-wrapper {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-    border-bottom: 1px solid var(--border);
-}
-
-.example-image-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.example-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(0.8px);
-    transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.example-card:hover .example-image {
-    transform: scale(1.04);
-    filter: blur(0);
-}
-
-.example-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.example-card:hover .example-overlay {
-    opacity: 1;
-}
-
-.example-overlay span {
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 6px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 100px;
-    backdrop-filter: blur(4px);
-}
-
-.example-card-footer {
-    padding: 16px 20px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.example-card-footer h3 {
-    font-size: 1rem;
-    font-weight: 550;
-    letter-spacing: -0.01em;
-}
-
 /* ── Value Proposition ── */
 
 #value-proposition {
@@ -463,7 +378,7 @@ section {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, var(--bg-secondary) 100%);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 32px 28px;
+    padding: 24px 28px;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -504,7 +419,7 @@ section {
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
-    margin: 0 auto 20px;
+    margin: 0 auto 14px;
     transition: all var(--transition);
 }
 
@@ -517,7 +432,7 @@ section {
 .value-card h3 {
     font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     letter-spacing: -0.01em;
 }
 
@@ -860,11 +775,7 @@ footer {
         padding: calc(var(--header-h) + 40px) 16px 60px;
     }
 
-    .examples-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .value-grid {
+    #hero {
         grid-template-columns: 1fr;
     }
 
@@ -890,10 +801,6 @@ footer {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-    .examples-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .value-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -929,7 +836,6 @@ footer {
 
 /* ── Scroll margin for fixed header ── */
 
-#examples,
 #value-proposition,
 #packages,
 #contact {
