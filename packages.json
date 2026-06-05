@@ -10,7 +10,7 @@
             "name": "Minimal",
             "priceKey": "minimal",
             "pricePrefix": "",
-            "description": "A clean, professional single-page website to establish your online presence.",
+            "description": "One time payment. A clean, professional single-page website to establish your online presence.",
             "popular": false,
             "features": [
                 { "text": "Complete static site (HTML, CSS, JS)", "included": true },
@@ -30,7 +30,7 @@
             "name": "Custom",
             "priceKey": "custom",
             "pricePrefix": "Starting from ",
-            "description": "A fully customized website designed to meet your unique business needs.",
+            "description": "One time payment. A fully customized website designed to meet your unique business needs.",
             "popular": true,
             "features": [
                 { "text": "Complete static site (HTML, CSS, JS)", "included": true },
