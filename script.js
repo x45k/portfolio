@@ -100,7 +100,7 @@ async function fetchPackages() {
                     '<div class="package-price">' + (pkg.pricePrefix || '') + priceStr + '</div>' +
                     '<p class="package-description">' + pkg.description + '</p>' +
                     '<ul class="package-features">' + featuresHtml + '</ul>' +
-                    '<a href="#contact" class="btn btn-primary btn-block">Get Started</a>' +
+                    '<a href="#" data-section="contact" class="btn btn-primary btn-block">Get Started</a>' +
                 '</div>'
             );
         }).join('');
@@ -108,6 +108,7 @@ async function fetchPackages() {
         container.innerHTML = html;
 
         observeNewCards();
+        attachScrollLinks();
     } catch (error) {
         container.innerHTML = '<div class="loading-packages">Failed to load packages. Please refresh.</div>';
     }
@@ -135,9 +136,32 @@ function observeNewCards() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // ── Hamburger Menu ──
+function scrollToSection(sectionId) {
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
 
+function attachScrollLinks() {
+    const scrollLinks = document.querySelectorAll('[data-section]');
+    scrollLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute('data-section');
+            if (sectionId) {
+                scrollToSection(sectionId);
+            }
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
     var body = document.body;
     var hamburger = document.getElementById('hamburger');
     var nav = document.getElementById('main-nav');
@@ -171,8 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('nav a').forEach(function(link) {
         link.addEventListener('click', closeNav);
     });
-
-    // ── Scroll Animations ──
 
     var staticElements = document.querySelectorAll(
         '.portfolio-card, .section-header, .contact-card'
@@ -220,5 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
+    attachScrollLinks();
     fetchPackages();
 });
