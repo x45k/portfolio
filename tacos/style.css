@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    background: #fff9f0;
+    color: #2c1a12;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header {
+    background: #11100e;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(4px);
+    background: rgba(17, 16, 14, 0.95);
+    border-bottom: 1px solid #e9b35f;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #f7b32b;
+    text-decoration: none;
+    font-family: monospace;
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav a {
+    color: #f7ede2;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    color: #f7b32b;
+}
+
+.hero {
+    background: linear-gradient(105deg, #1f1a15 0%, #2f241d 100%);
+    color: white;
+    padding: 5rem 0 6rem;
+    text-align: center;
+}
+
+.hero__content h2 {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    font-weight: 400;
+    color: #f7b32b;
+    text-transform: uppercase;
+}
+
+.hero__content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 1rem 0 1.2rem;
+    line-height: 1.2;
+}
+
+.hero__content h1 span {
+    background: #f7b32b;
+    color: #1f1a15;
+    padding: 0 0.4rem;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+.hero__content p {
+    font-size: 1.25rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.menu-grid {
+    padding: 5rem 0;
+    background: #fffaf2;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: #f7b32b20;
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    color: #b45f1b;
+    font-weight: 600;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-top: 0.6rem;
+    color: #2c1a12;
+    font-weight: 700;
+}
+
+.taco-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.taco-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.taco-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 30px rgba(0,0,0,0.1);
+}
+
+.taco-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.taco-card h3 {
+    font-size: 1.6rem;
+    margin: 1rem 0 0.5rem;
+    font-weight: 700;
+    text-transform: lowercase;
+}
+
+.taco-card p {
+    padding: 0 1rem;
+    color: #4a3528;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.story-section {
+    background: #f5ebe0;
+    padding: 5rem 0;
+    border-top: 1px solid #e3d5c0;
+    border-bottom: 1px solid #e3d5c0;
+}
+
+.story__inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.story__content {
+    flex: 2;
+}
+
+.story-tag {
+    display: inline-block;
+    background: #b45f1b20;
+    padding: 0.3rem 1rem;
+    border-radius: 60px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #a35110;
+    margin-bottom: 1rem;
+}
+
+.story__content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.story__big-text {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: #2b2b28;
+}
+
+.story__big-text.secondary {
+    font-size: 1rem;
+    color: #5e493a;
+}
+
+.story__icon {
+    flex: 1;
+    text-align: center;
+    font-size: 6rem;
+    color: #e48f2c;
+    background: #fff3e4;
+    padding: 2rem;
+    border-radius: 60px;
+}
+
+.contact {
+    background: #1f1c18;
+    color: #fef3e2;
+    padding: 5rem 0;
+}
+
+.section-title.light span {
+    background: #f7b32b30;
+    color: #ffcd7e;
+}
+
+.section-title.light h2 {
+    color: #fff0df;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.contact-info-card {
+    background: #2c2722;
+    padding: 1.8rem 1.2rem;
+    border-radius: 32px;
+    text-align: center;
+    transition: all 0.2s;
+    border: 1px solid #f7b32b30;
+}
+
+.contact-info-card i {
+    font-size: 2.2rem;
+    color: #f7b32b;
+    margin-bottom: 1rem;
+}
+
+.contact-info-card h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+}
+
+.contact-info-card p {
+    line-height: 1.6;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+@media (max-width: 760px) {
+    .hero__content h1 {
+        font-size: 2.8rem;
+    }
+    .header__inner {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .nav {
+        gap: 1.5rem;
+    }
+    .story__inner {
+        flex-direction: column;
+    }
+    .story__icon {
+        order: 1;
+    }
+    .container {
+        padding: 0 1.2rem;
+    }
+    .taco-cards {
+        gap: 1rem;
+    }
+}
