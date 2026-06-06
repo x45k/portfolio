@@ -1,9 +1,7 @@
 .DS_Store
 
-# AI tooling
-.opencode/
-.cursor/
-CLAUDE.md
-AGENTS.md
-.aider*
-
+#.opencode/
+#.cursor/
+#CLAUDE.md
+#AGENTS.md
+#.aider*
