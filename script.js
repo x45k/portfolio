@@ -1,8 +1,30 @@
+const LOCATION_CACHE_KEY = 'location_data';
+const LOCATION_CACHE_EXPIRY_MS = 60 * 60 * 1000;
+
 async function fetchCountryAndCurrency() {
+    const cachedRaw = localStorage.getItem(LOCATION_CACHE_KEY);
+    if (cachedRaw) {
+        try {
+            const cached = JSON.parse(cachedRaw);
+            const now = Date.now();
+            if (now - cached.timestamp < LOCATION_CACHE_EXPIRY_MS) {
+                return cached.data;
+            }
+        } catch (e) {
+        }
+    }
+
     try {
         const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
-        return { country: data.country_name, currency: data.currency };
+        const result = { country: data.country_name, currency: data.currency };
+
+        localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify({
+            data: result,
+            timestamp: Date.now()
+        }));
+
+        return result;
     } catch (error) {
         return { country: 'your location', currency: 'GBP' };
     }
