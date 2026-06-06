@@ -175,8 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ── Hide Header on Scroll Down ──
-
     var lastScrollY = window.scrollY;
     var ticking = false;
 
@@ -199,8 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ticking = true;
         }
     }, { passive: true });
-
-    // ── Packages (fetched from JSON) ──
 
     fetchPackages();
 });

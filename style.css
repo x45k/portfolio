@@ -56,7 +56,6 @@ ul {
     list-style: none;
 }
 
-/* ── Header ── */
 
 header {
     position: fixed;
@@ -101,8 +100,6 @@ header.header--hidden {
     color: var(--text-muted);
     margin-left: 1px;
 }
-
-/* ── Nav ── */
 
 nav ul {
     display: flex;
@@ -168,8 +165,6 @@ nav a:hover {
     }
 }
 
-/* ── Hamburger ── */
-
 .hamburger {
     display: none;
     width: 28px;
@@ -227,8 +222,6 @@ nav a:hover {
     pointer-events: auto;
 }
 
-/* ── Hero ── */
-
 #hero {
     min-height: 100vh;
     display: flex;
@@ -271,8 +264,6 @@ nav a:hover {
     justify-content: center;
     flex-wrap: wrap;
 }
-
-/* ── Buttons ── */
 
 .btn {
     display: inline-flex;
@@ -333,8 +324,6 @@ nav a:hover {
     gap: 8px;
 }
 
-/* ── Sections ── */
-
 section {
     padding: 80px 20px;
     border-bottom: 1px solid var(--border);
@@ -359,8 +348,6 @@ section {
     font-size: 1.05rem;
     line-height: 1.6;
 }
-
-/* ── Portfolio ── */
 
 #portfolio {
     padding-top: calc(var(--header-h) + 40px);
@@ -479,8 +466,6 @@ section {
     color: var(--text-muted);
 }
 
-/* ── Packages ── */
-
 #packages {
     padding-top: calc(var(--header-h) + 40px);
 }
@@ -598,8 +583,6 @@ section {
     text-decoration: line-through;
 }
 
-/* ── Contact ── */
-
 #contact {
     border-bottom: none;
     padding-top: calc(var(--header-h) + 40px);
@@ -657,8 +640,6 @@ section {
 .contact-item a:hover {
     color: var(--accent-hover);
 }
-
-/* ── Footer ── */
 
 footer {
     border-top: 1px solid var(--border);
@@ -733,8 +714,6 @@ footer {
     background: var(--bg-tertiary);
 }
 
-/* ── Animations ── */
-
 .fade-in {
     opacity: 0;
     transform: translateY(24px);
@@ -745,8 +724,6 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* ── Responsive ── */
 
 @media (max-width: 767px) {
     .hamburger {
@@ -860,8 +837,6 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-/* ── Scroll margin for fixed header ── */
 
 #portfolio,
 #packages,

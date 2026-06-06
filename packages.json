@@ -20,7 +20,7 @@
                 { "text": "Cross-browser compatibility", "included": true },
                 { "text": "Single-page website", "included": true },
                 { "text": "4 rounds of free revisions", "included": true },
-                { "text": "Basic setup and hosting support before handover", "included": false },
+                { "text": "Basic setup and hosting support before handover", "included": true },
                 { "text": "Engaging animations & interactions", "included": false },
                 { "text": "Custom domain setup and purchase support", "included": false },
                 { "text": "Admin page for easy content updates", "included": false }
