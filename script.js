@@ -83,11 +83,14 @@ async function fetchPackages() {
                 exchangeRate, currencySymbol, locationData.currency
             );
 
+            var checkSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+            var xSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+
             const featuresHtml = pkg.features.map(function(f) {
                 var text = replacePlaceholders(f.text, data.pricesCHF, exchangeRate, currencySymbol, locationData.currency);
-                var icon = f.included ? 'fa-check' : 'fa-times';
+                var icon = f.included ? checkSvg : xSvg;
                 var cls = f.included ? '' : ' class="not-included"';
-                return '<li' + cls + '><i class="fas ' + icon + '"></i> ' + text + '</li>';
+                return '<li' + cls + '><span class="feature-icon">' + icon + '</span> ' + text + '</li>';
             }).join('');
 
             var popularClass = pkg.popular ? ' popular' : '';
@@ -221,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var lastScrollY = window.scrollY;
     var ticking = false;
+    var backToTop = document.querySelector('.back-to-top');
 
     window.addEventListener('scroll', function() {
         if (!ticking) {
@@ -235,6 +239,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     header.classList.remove('header--hidden');
                 }
+
+                if (backToTop) {
+                    if (currentY > 400) {
+                        backToTop.classList.add('visible');
+                    } else {
+                        backToTop.classList.remove('visible');
+                    }
+                }
+
                 lastScrollY = currentY;
                 ticking = false;
             });
