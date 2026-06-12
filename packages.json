@@ -1,7 +1,7 @@
 {
     "pricesCHF": {
-        "minimal": 80,
-        "custom": 120,
+        "minimal": 74.99,
+        "custom": 109.99,
         "basichosting": 5,
         "customdomain": 8.73
     },

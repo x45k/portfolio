@@ -31,12 +31,16 @@ async function fetchCountryAndCurrency() {
 }
 
 async function getExchangeRate(userCurrency) {
-    try {
-        const response = await fetch(`https://api.frankfurter.dev/v1/latest?base=CHF&symbols=${userCurrency}`);
-        const data = await response.json();
-        return data.rates[userCurrency];
-    } catch (error) {
-        return 1;
+    if (userCurrency != 'GBP') {
+        try {
+            const response = await fetch(`https://api.frankfurter.dev/v1/latest?base=GBP&symbols=${userCurrency}`);
+            const data = await response.json();
+            return data.rates[userCurrency];
+        } catch (error) {
+            return 1;
+        }
+    } else {
+        return 1
     }
 }
 
@@ -51,7 +55,8 @@ function getCurrencySymbol(currencyCode) {
 
 function formatPrice(chfAmount, exchangeRate, currencySymbol, currencyCode) {
     const converted = chfAmount * exchangeRate;
-    return `${currencySymbol}${Math.ceil(converted).toFixed(2)} ${currencyCode}`;
+    const roundedTo99 = Math.round(converted + 0.01) - 0.01;
+    return `${currencySymbol}${roundedTo99.toFixed(2)} ${currencyCode}`;
 }
 
 function replacePlaceholders(text, pricesCHF, exchangeRate, currencySymbol, currencyCode) {
