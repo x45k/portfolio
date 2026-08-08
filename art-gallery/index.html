@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo.png" />
+    <link rel="apple-touch-icon" href="./assets/logo.png" />
+    <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#6366f1" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <title>Art Gallery</title>
+    <meta name="description" content="Clean, responsive websites for small businesses." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta property="og:title" content="xsWeb — Web Development for Small Businesses" />
+    <meta property="og:description" content="Clean, responsive websites designed to attract customers and grow your revenue. Custom web development for small businesses." />
+    <meta property="og:url" content="https://xsweb.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://xsweb.dev/assets/favicon.png" />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="1000" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="xsWeb — Web Development for Small Businesses" />
+    <meta name="twitter:description" content="Clean, responsive websites designed to attract customers and grow your revenue. Custom web development for small businesses." />
+    <meta name="twitter:image" content="https://xsweb.dev/assets/logo.png" />
+</head>
+<body>
+    <div id="shader-container"></div>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo" id="logo-link">Gallery</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="content">
+        <section id="home" class="section hero">
+            <div class="hero-content">
+                <h1>Art Gallery</h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-inner">
+                <h2>About the Gallery</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <p>
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+                </p>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="section-inner">
+                <h2>Exhibition</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="./assets/painting1.png" alt="Painting 1" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./assets/painting2.png" alt="Painting 2" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./assets/painting3.png" alt="Painting 3" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./assets/painting4.png" alt="Painting 4" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./assets/painting5.png" alt="Painting 5" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./assets/painting6.png" alt="Painting 6" />
+                    </div>
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="section-inner contact-info">
+                <h2>Get in Touch</h2>
+                <p><strong>Email:</strong> info@art-gallery.example.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Example Lane, Example City, AK 12345</p>
+                <p><strong>Hours:</strong> Tue-Sat 10am - 6pm</p>
+            </div>
+        </section>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "ogl": "https://esm.sh/ogl@0.0.75"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
