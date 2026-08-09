@@ -6,9 +6,10 @@
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
     overflow-x: hidden;
+    background: #0f0f14;
 }
 
 .top-bar {
@@ -54,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
     position: relative;
     border-radius: 0;
     letter-spacing: 0.3px;
@@ -83,13 +84,12 @@ body {
     height: 3px;
     background-color: #4dabf7;
     border-radius: 3px 3px 0 0;
-    transition: all 0.3s ease;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 0;
 }
 
 .nav-btn.active {
     color: #fff;
-    transition: color 0.3s ease 0.1s;
 }
 
 .nav-btn.active i {
@@ -105,24 +105,25 @@ body {
     align-items: center;
     padding: 100px 20px 40px;
     position: relative;
+    overflow: hidden;
 }
 
-#home {
+.hero-section {
+    padding-top: 70px;
+    background: transparent;
+    position: relative;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/lisbon.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
-    height: 100vh;
-    padding-top: 70px;
-}
-
-@media (max-width: 768px) {
-    #home {
-        background-attachment: scroll;
-        background-position: center center;
-        background-size: cover;
-    }
+    transform: scale(1.08);
+    transition: transform 0.1s ease-out;
+    will-change: transform;
 }
 
 #home .content {
@@ -130,6 +131,7 @@ body {
     max-width: 800px;
     padding: 20px;
     z-index: 2;
+    position: relative;
 }
 
 #home h1 {
@@ -157,12 +159,27 @@ body {
     z-index: 2;
     width: 100%;
     max-width: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cta-btn:hover::after {
+    opacity: 1;
 }
 
 .cta-btn:hover {
     background-color: #3a8bc8;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 5px 25px rgba(77, 171, 247, 0.4);
 }
 
 .scroll-hint {
@@ -176,31 +193,16 @@ body {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-5px);
-    }
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-12px); }
+    60% { transform: translateX(-50%) translateY(-6px); }
 }
 
 #tours {
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('./assets/tours-image.png');
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('./assets/tours-image.png');
     background-size: cover;
     background-position: center;
-    background-attachment: scroll;
     color: #333;
-}
-
-@media (max-width: 768px) {
-    #tours {
-        background-attachment: scroll;
-        background-size: cover;
-        background-position: center center;
-    }
 }
 
 #tours h2 {
@@ -225,21 +227,29 @@ body {
     border-radius: 15px;
     padding: 30px 20px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(77, 171, 247, 0.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(10px);
+    will-change: transform;
 }
 
 .tour-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(77, 171, 247, 0.2);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(77, 171, 247, 0.25);
+    border-color: rgba(77, 171, 247, 0.4);
 }
 
 .tour-card i {
     font-size: 2.5rem;
     color: #4dabf7;
     margin-bottom: 20px;
+    transition: transform 0.4s ease;
+    display: inline-block;
+}
+
+.tour-card:hover i {
+    transform: scale(1.15) rotate(-4deg);
 }
 
 .tour-card h3 {
@@ -258,15 +268,6 @@ body {
     background: linear-gradient(rgba(108, 117, 125, 0.9), rgba(108, 117, 125, 0.9)), url('./assets/about-image.png');
     background-size: cover;
     background-position: center;
-    background-attachment: scroll;
-}
-
-@media (max-width: 768px) {
-    #about {
-        background-attachment: scroll;
-        background-size: cover;
-        background-position: center center;
-    }
 }
 
 #about h2 {
@@ -291,6 +292,7 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 60px;
+        align-items: center;
     }
 }
 
@@ -302,7 +304,7 @@ body {
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .about-text:hover {
@@ -335,13 +337,14 @@ body {
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     aspect-ratio: 1;
     min-height: 150px;
+    will-change: transform;
 }
 
 @media (min-width: 768px) {
@@ -352,8 +355,8 @@ body {
 }
 
 .stat:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-6px) scale(1.02);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .stat h4 {
@@ -382,15 +385,6 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('./assets/contact-image.png');
     background-size: cover;
     background-position: center;
-    background-attachment: scroll;
-}
-
-@media (max-width: 768px) {
-    #contact {
-        background-attachment: scroll;
-        background-size: cover;
-        background-position: center center;
-    }
 }
 
 #contact h2 {
@@ -423,9 +417,10 @@ body {
     border-radius: 15px;
     padding: 25px 20px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    will-change: transform;
 }
 
 @media (min-width: 768px) {
@@ -436,7 +431,7 @@ body {
 
 .contact-card:hover {
     background: rgba(77, 171, 247, 0.2);
-    transform: translateY(-5px);
+    transform: translateY(-6px) scale(1.02);
     border-color: rgba(77, 171, 247, 0.5);
 }
 
@@ -444,6 +439,12 @@ body {
     font-size: 2.2rem;
     color: #4dabf7;
     margin-bottom: 15px;
+    transition: transform 0.4s ease;
+    display: inline-block;
+}
+
+.contact-card:hover i {
+    transform: scale(1.15) rotate(3deg);
 }
 
 @media (min-width: 768px) {
@@ -517,40 +518,77 @@ body {
 
 .social-links a:hover {
     background: #4dabf7;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(77, 171, 247, 0.4);
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 5px 25px rgba(77, 171, 247, 0.5);
+}
+
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-animate="fade-up"] {
+    transform: translateY(50px);
+}
+
+[data-animate="scale-up"] {
+    transform: scale(0.85);
+}
+
+[data-animate="slide-left"] {
+    transform: translateX(-60px);
+}
+
+[data-animate="slide-right"] {
+    transform: translateX(60px);
+}
+
+[data-animate].visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+[data-delay="0"] { transition-delay: 0s; }
+[data-delay="1"] { transition-delay: 0.08s; }
+[data-delay="2"] { transition-delay: 0.16s; }
+[data-delay="3"] { transition-delay: 0.24s; }
+[data-delay="4"] { transition-delay: 0.32s; }
+[data-delay="5"] { transition-delay: 0.40s; }
+
+.split-text .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: calc(var(--word-index, 0) * 0.06s);
+}
+
+.split-text.visible .word {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.hero-section .split-text .word {
+    transition-delay: calc(var(--word-index, 0) * 0.08s + 0.2s);
 }
 
 @media (max-width: 768px) {
     .section {
-        background-attachment: scroll !important;
+        padding: 80px 15px 30px;
     }
-    
-    #home {
-        background-position: center center;
-        background-size: cover;
-    }
-    
-    #tours, #about, #contact {
-        background-position: center center;
-        background-size: cover;
-    }
-    
     .tours-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
     .stats {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
     .about-content {
         gap: 30px;
     }
