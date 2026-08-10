@@ -12,7 +12,7 @@
     <meta name="description" content="Clean, responsive websites for small businesses." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <meta property="og:title" content="xsWeb — Web Development for Small Businesses" />
@@ -34,10 +34,10 @@
         <div class="nav-inner">
             <a href="#" class="logo" id="logo-link">Gallery</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" data-target="home">Home</a></li>
+                <li><a href="#about" data-target="about">About</a></li>
+                <li><a href="#gallery" data-target="gallery">Gallery</a></li>
+                <li><a href="#contact" data-target="contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -66,23 +66,23 @@
             <div class="section-inner">
                 <h2>Exhibition</h2>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="./assets/painting1.png" alt="Painting 1" />
+                    <div class="gallery-item" data-image="./assets/painting1.png">
+                        <img src="./assets/painting1.png" alt="Painting 1" loading="lazy" />
                     </div>
-                    <div class="gallery-item">
-                        <img src="./assets/painting2.png" alt="Painting 2" />
+                    <div class="gallery-item" data-image="./assets/painting2.png">
+                        <img src="./assets/painting2.png" alt="Painting 2" loading="lazy" />
                     </div>
-                    <div class="gallery-item">
-                        <img src="./assets/painting3.png" alt="Painting 3" />
+                    <div class="gallery-item" data-image="./assets/painting3.png">
+                        <img src="./assets/painting3.png" alt="Painting 3" loading="lazy" />
                     </div>
-                    <div class="gallery-item">
-                        <img src="./assets/painting4.png" alt="Painting 4" />
+                    <div class="gallery-item" data-image="./assets/painting4.png">
+                        <img src="./assets/painting4.png" alt="Painting 4" loading="lazy" />
                     </div>
-                    <div class="gallery-item">
-                        <img src="./assets/painting5.png" alt="Painting 5" />
+                    <div class="gallery-item" data-image="./assets/painting5.png">
+                        <img src="./assets/painting5.png" alt="Painting 5" loading="lazy" />
                     </div>
-                    <div class="gallery-item">
-                        <img src="./assets/painting6.png" alt="Painting 6" />
+                    <div class="gallery-item" data-image="./assets/painting6.png">
+                        <img src="./assets/painting6.png" alt="Painting 6" loading="lazy" />
                     </div>
                 </div>
                 <p>
@@ -100,6 +100,12 @@
                 <p><strong>Hours:</strong> Tue-Sat 10am - 6pm</p>
             </div>
         </section>
+    </div>
+
+    <div id="image-modal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img" src="" alt="Full screen" />
+        <div class="modal-caption" id="modal-caption"></div>
     </div>
 
     <script type="importmap">

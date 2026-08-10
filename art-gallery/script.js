@@ -33,7 +33,7 @@ const fragmentShader = `
 
         float d = -(uTime * 0.5 + uRandomPhase) * uSpeed;
         float a = 0.0;
-        for (float i = 0.0; i < 6.0; ++i) {
+        for (float i = 0.0; i < 4.0; ++i) {
             a += cos(i - d - a * uv.x);
             d += sin(uv.y * i + a);
         }
@@ -64,7 +64,11 @@ const config = {
 
 const container = document.getElementById('shader-container');
 
-const renderer = new Renderer();
+const renderer = new Renderer({
+    antialias: false,
+    powerPreference: 'high-performance',
+    pixelRatio: Math.min(window.devicePixelRatio || 1, 0.7)
+});
 const gl = renderer.gl;
 gl.clearColor(1, 1, 1, 1);
 
@@ -101,9 +105,8 @@ function resize() {
     const rect = container.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
-    const dpr = 1;
 
-    renderer.setSize(width * dpr, height * dpr);
+    renderer.setSize(width, height);
 
     const w = gl.canvas.width;
     const h = gl.canvas.height;
@@ -195,20 +198,79 @@ window.__shader = {
     },
 };
 
+function getNavbarHeight() {
+    const navbar = document.getElementById('navbar');
+    return navbar ? navbar.offsetHeight : 56;
+}
+
+function scrollToSection(targetId) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const navbarHeight = getNavbarHeight();
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 6;
+    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+}
+
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
-        if (targetId && targetId.startsWith('#')) {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+        const targetId = link.getAttribute('data-target');
+        if (targetId) scrollToSection(targetId);
     });
 });
 
 document.getElementById('logo-link').addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const sections = document.querySelectorAll('.section:not(.hero)');
+const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+        if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+            entry.target.classList.add('visible');
+        }
+    }
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -20px 0px'
+});
+sections.forEach(section => observer.observe(section));
+
+const modal = document.getElementById('image-modal');
+const modalImg = document.getElementById('modal-img');
+const modalCaption = document.getElementById('modal-caption');
+const modalClose = document.querySelector('.modal-close');
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const src = item.dataset.image || img?.src;
+        if (src) {
+            modalImg.src = src;
+            modalImg.alt = img?.alt || 'Artwork';
+            modalCaption.textContent = img?.alt || '';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 });
